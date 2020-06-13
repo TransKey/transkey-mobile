@@ -1,16 +1,26 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
+
+import {CustomDrawer} from '../components';
 
 import {HomeScreen} from '../screens';
 
 export function AppNavigation() {
-  const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen component={HomeScreen} name="Home" />
-      </Stack.Navigator>
+      <Drawer.Navigator
+        openByDefault
+        hideStatusBar
+        initialRouteName="Home"
+        drawerContent={(props) => <CustomDrawer {...props} />}>
+        <Drawer.Screen
+          component={HomeScreen}
+          name="Home"
+          initialParams={{icon: {name: 'home', type: 'Entypo'}}}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
