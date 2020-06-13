@@ -1,10 +1,10 @@
 import React from 'react';
-import {Content, Body} from 'native-base';
+import { Content } from 'native-base';
 import MapView from 'react-native-maps';
-import {DrawerActions, useNavigation} from '@react-navigation/native';
-import {Header, Left, Button, Icon, View} from 'native-base';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { Header, Left, Button, Icon, View } from 'native-base';
 
-import {BaseContainer, ButtonPrimary} from '../../components';
+import { BaseContainer, ButtonPrimary } from '../../components';
 
 import styles from './styles';
 
