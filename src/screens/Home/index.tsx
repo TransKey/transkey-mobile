@@ -1,10 +1,15 @@
 import React from 'react';
-import {View, Text} from 'native-base';
+import MapView from 'react-native-maps';
 
 export function HomeScreen() {
   return (
-    <View>
-      <Text>Home Screen</Text>
-    </View>
+    <MapView
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    />
   );
 }

@@ -8,7 +8,7 @@ export function AppNavigation() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator headerMode="none">
         <Stack.Screen component={HomeScreen} name="Home" />
       </Stack.Navigator>
     </NavigationContainer>
