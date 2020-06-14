@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content } from 'native-base';
+import { Content, Text, Body, Right } from 'native-base';
 import MapView from 'react-native-maps';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Header, Left, Button, Icon, View } from 'native-base';
@@ -23,8 +23,12 @@ export function HomeScreen() {
             <Icon name="reorder" type="MaterialIcons" style={styles.icon} />
           </Button>
         </Left>
+        <Body>
+          <Text style={styles.title}>Inicio</Text>
+        </Body>
+        <Right />
       </Header>
-      <Content>
+      <Content scrollEnabled={false}>
         <View style={styles.viewMap}>
           <MapView
             style={styles.map}

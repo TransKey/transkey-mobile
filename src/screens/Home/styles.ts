@@ -11,6 +11,10 @@ export default StyleSheet.create({
   icon: {
     color: '#ffffff',
   },
+  title: {
+    color: '#ffffff',
+    fontSize: 22,
+  },
   viewMap: {
     height: hp('100%'),
     width: wp('100%'),

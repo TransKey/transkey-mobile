@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -25,6 +25,6 @@ export default StyleSheet.create({
   },
   drawerItem: {
     color: '#ffffff',
-    fontSize: wp('4%'),
+    fontSize: wp('5%'),
   },
 });

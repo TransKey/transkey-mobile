@@ -1,10 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  view: {
+  header: {
     backgroundColor: '#4e73df',
   },
-  container: {
-    flex: 1,
+  bodyheader: {
+    flex: 3,
+  },
+  title: {
+    color: '#ffffff',
+    fontSize: 22,
   },
 });

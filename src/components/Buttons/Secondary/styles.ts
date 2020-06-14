@@ -1,10 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
   button: {
-    backgroundColor: '#017003',
-    width: wp('43%'),
+    backgroundColor: '#7a0202',
     borderRadius: 5,
   },
   text: {

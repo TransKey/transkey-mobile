@@ -1,13 +1,21 @@
 import React from 'react';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {Text, View, Thumbnail, Icon} from 'native-base';
+import { Text, View, Thumbnail, Icon } from 'native-base';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
 import styles from './styles';
 
 export function CustomDrawer(props: any) {
-  const {routes} = props.state;
+  const { routes } = props.state;
+
+  function handleClickItem(name: any) {
+    props.navigation.navigate(name);
+  }
+
   return (
-    <DrawerContentScrollView {...props} style={styles.container}>
+    <DrawerContentScrollView
+      {...props}
+      scrollEnabled={false}
+      style={styles.container}>
       <View style={styles.viewHeader}>
         <Thumbnail
           source={{
@@ -26,8 +34,8 @@ export function CustomDrawer(props: any) {
             key={route.key}
             label={route.name}
             labelStyle={styles.drawerItem}
-            onPress={() => console.warn(route.name)}
-            icon={({color, focused}) => (
+            onPress={() => handleClickItem(route.name)}
+            icon={({ color, focused }) => (
               <Icon
                 name={route.params.icon.name}
                 type={route.params.icon.type}
