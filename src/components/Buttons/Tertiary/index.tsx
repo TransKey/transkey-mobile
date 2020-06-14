@@ -3,18 +3,19 @@ import { Button, Text, Icon } from 'native-base';
 
 import styles from './styles';
 
-interface ButtonSecondaryProps {
+interface ButtonTertiaryProps {
   name: string;
   icon: any;
   type?: any;
   onPress?: any;
 }
-export function ButtonSecondary({
+
+export function ButtonTertiary({
   name,
   icon,
   type,
   onPress,
-}: ButtonSecondaryProps) {
+}: ButtonTertiaryProps) {
   return (
     <Button style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{name}</Text>

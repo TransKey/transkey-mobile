@@ -28,7 +28,7 @@ export default StyleSheet.create({
     backgroundColor: '#4e73df',
     shadowColor: '#000000',
     alignItems: 'flex-start',
-    height: hp('35%'),
+    height: hp('45%'),
     width: wp('90%'),
   },
   viewText: {

@@ -5,26 +5,9 @@ import {
 } from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
-  header: {
-    backgroundColor: '#4e73df',
-  },
-  bodyheader: {
-    flex: 3,
-  },
-  title: {
-    color: '#ffffff',
-    fontSize: 22,
-  },
-  content: {
-    backgroundColor: '#4098e2',
-  },
-  viewContent: {
-    alignItems: 'center',
-    marginTop: hp('3%'),
-  },
   card: {
     borderColor: '#4e73df',
-    width: wp('85%'),
+    width: wp('90%'),
   },
 
   cardItem: {
@@ -32,12 +15,19 @@ export default StyleSheet.create({
   },
   cardTitle: {
     color: '#4098e2',
-    fontSize: 18,
+    fontSize: 15,
   },
+  cardBody: { marginLeft: wp('2%'), marginVertical: hp('2%') },
   cardText: {
-    marginLeft: wp('2%'),
-    marginVertical: hp('2%'),
     color: '#4098e2',
     fontSize: 15,
+  },
+  cardFooter: {
+    justifyContent: 'center',
+  },
+
+  foooterText: {
+    color: 'rgba(64, 152, 226, 0.8)',
+    fontSize: 12,
   },
 });

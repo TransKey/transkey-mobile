@@ -29,14 +29,14 @@ export function AppNavigation() {
           initialParams={{ icon: { name: 'person', type: 'Ionicons' } }}
         />
         <Drawer.Screen
-          name="Config"
-          component={ConfiguracoesScreen}
-          initialParams={{ icon: { name: 'settings', type: 'Ionicons' } }}
-        />
-        <Drawer.Screen
           name="Meus Trajetos"
           component={MeusTrajetosScreen}
           initialParams={{ icon: { name: 'car', type: 'Ionicons' } }}
+        />
+        <Drawer.Screen
+          name="Config"
+          component={ConfiguracoesScreen}
+          initialParams={{ icon: { name: 'settings', type: 'Ionicons' } }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

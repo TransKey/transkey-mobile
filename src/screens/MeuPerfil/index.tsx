@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
-import { BaseContainer, ButtonBack } from '../../components';
+import { BaseContainer, ButtonBack, DefaultInput } from '../../components';
 
 import styles from './styles';
 
@@ -41,14 +41,10 @@ export function MeuPerfilScreen() {
             style={styles.thumbnail}
           />
 
-          <View style={styles.viewData}>
-            <View style={styles.viewText}>
-              <Text style={styles.text}>Nome: Carlos Alberto</Text>
-              <Text style={styles.text}>Email: email@email.com</Text>
-              <Text style={styles.text}>CPF: 000.000.000-00</Text>
-              <Text style={styles.text}>Celular: (71) 9999-9999</Text>
-            </View>
-          </View>
+          <DefaultInput name="Nome" value="Carlos Alberto" />
+          <DefaultInput name="Email" value="email@email.com" />
+          <DefaultInput name="CPF" value="000.000.000-00" />
+          <DefaultInput name="Celular" value="(71) 9999-9999" />
         </View>
       </Content>
     </BaseContainer>
