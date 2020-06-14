@@ -34,8 +34,6 @@ export function HomeScreen() {
   const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
   useEffect(() => {
-    console.log('DALE PORRA');
-
     const watchID = Geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
