@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Content } from 'native-base';
+import { Content, Body, Right } from 'native-base';
 import MapView, {
   AnimatedRegion,
   Polyline,
@@ -41,8 +41,6 @@ export function HomeScreen() {
   const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
   useEffect(() => {
-    console.log('');
-
     const watchID = Geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -99,6 +97,16 @@ export function HomeScreen() {
     navigation.dispatch(DrawerActions.openDrawer());
   }
 
+  const [start, setStart] = useState(false);
+
+  function handleStart() {
+    setStart(!start);
+
+    console.log(routeCoordinates);
+
+    setRouteCoordinates([]);
+  }
+
   return (
     <BaseContainer>
       <Header style={styles.header}>
@@ -107,7 +115,11 @@ export function HomeScreen() {
             <Icon name="reorder" type="MaterialIcons" style={styles.icon} />
           </Button>
         </Left>
+
+        <Body />
+        <Right />
       </Header>
+
       <Content>
         <View style={styles.viewMap}>
           <MapView
@@ -116,12 +128,14 @@ export function HomeScreen() {
             loadingEnabled
             // showsUserLocation
             region={getMapRegion()}>
-            <Polyline coordinates={routeCoordinates} strokeWidth={5} />
+            {start && (
+              <Polyline coordinates={routeCoordinates} strokeWidth={5} />
+            )}
 
             <MarkerAnimated coordinate={coordinate} />
           </MapView>
           <View style={styles.viewButton}>
-            <ButtonPrimary name="Inciar" icon="power" />
+            <ButtonPrimary name="Inciar" icon="power" onPress={handleStart} />
           </View>
         </View>
       </Content>
