@@ -6,10 +6,11 @@ import styles from './styles';
 interface ButtonSecondaryProps {
   name: string;
   icon: any;
+  onPress?: any;
 }
-export function ButtonSecondary({ name, icon }: ButtonSecondaryProps) {
+export function ButtonSecondary({ name, icon, onPress }: ButtonSecondaryProps) {
   return (
-    <Button style={styles.button}>
+    <Button style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{name}</Text>
       <Icon name={icon} />
     </Button>

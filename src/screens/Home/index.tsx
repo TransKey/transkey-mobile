@@ -1,18 +1,113 @@
-import React from 'react';
-import { Content, Text, Body, Right } from 'native-base';
-import MapView from 'react-native-maps';
+import React, { useState, useEffect } from 'react';
+import { Content, Body, Right } from 'native-base';
+import MapView, {
+  AnimatedRegion,
+  Polyline,
+  MarkerAnimated,
+} from 'react-native-maps';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import { Header, Left, Button, Icon, View } from 'native-base';
+import { Header, Left, Button, Icon, View, Text } from 'native-base';
 
-import { BaseContainer, ButtonPrimary } from '../../components';
+import {
+  BaseContainer,
+  ButtonPrimary,
+  ButtonSecondary,
+} from '../../components';
+
+import haversine from 'haversine';
+
+import Geolocation from '@react-native-community/geolocation';
 
 import styles from './styles';
 
 export function HomeScreen() {
   const navigation = useNavigation();
 
+  const [latLen, setLatLen] = useState({
+    latitude: -12.79325143,
+    longitude: -38.39671918,
+  });
+
+  const [coordinate, setCoordinate] = useState(
+    new AnimatedRegion({
+      latitude: -12.79325143,
+      longitude: -38.39671918,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
+    }),
+  );
+
+  const [prevLatLng, setPrevLatLng] = useState<any>({});
+
+  const [totalDistance, setTotalDistance] = useState(0);
+
+  const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
+
+  useEffect(() => {
+    const watchID = Geolocation.watchPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        const newCoordinate = {
+          latitude,
+          longitude,
+        };
+
+        coordinate.timing({ ...newCoordinate, useNativeDriver: false }).start();
+
+        setRouteCoordinates(routeCoordinates.concat([newCoordinate]));
+
+        setTotalDistance(totalDistance + calcDistance(newCoordinate));
+
+        setPrevLatLng(newCoordinate);
+
+        setLatLen(newCoordinate);
+
+        setCoordinate(
+          new AnimatedRegion({
+            ...newCoordinate,
+            latitudeDelta: 0,
+            longitudeDelta: 0,
+          }),
+        );
+      },
+      (error) => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+        distanceFilter: 5,
+      },
+    );
+
+    return function cleanup() {
+      Geolocation.clearWatch(watchID);
+    };
+  });
+
+  const getMapRegion = () => ({
+    latitude: latLen.latitude,
+    longitude: latLen.longitude,
+    latitudeDelta: 0.009,
+    longitudeDelta: 0.009,
+  });
+
+  function calcDistance(newLatLng: any) {
+    return haversine(prevLatLng, newLatLng) || 0;
+  }
+
   function handlerDrawer() {
     navigation.dispatch(DrawerActions.openDrawer());
+  }
+
+  const [start, setStart] = useState(false);
+
+  function handleStart() {
+    setStart(!start);
+
+    console.log(routeCoordinates);
+
+    setRouteCoordinates([]);
   }
 
   return (
@@ -32,15 +127,25 @@ export function HomeScreen() {
         <View style={styles.viewMap}>
           <MapView
             style={styles.map}
-            region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121,
-            }}
-          />
+            followsUserLocation
+            loadingEnabled
+            // showsUserLocation
+            region={getMapRegion()}>
+            {start && (
+              <Polyline coordinates={routeCoordinates} strokeWidth={5} />
+            )}
+            <MarkerAnimated coordinate={coordinate} />
+          </MapView>
           <View style={styles.viewButton}>
-            <ButtonPrimary name="Inciar" icon="power" />
+            {start ? (
+              <ButtonPrimary name="Inciar" icon="power" onPress={handleStart} />
+            ) : (
+              <ButtonSecondary
+                name="Cancelar"
+                icon="power"
+                onPress={handleStart}
+              />
+            )}
           </View>
         </View>
       </Content>

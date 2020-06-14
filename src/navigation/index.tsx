@@ -16,7 +16,6 @@ export function AppNavigation() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        openByDefault
         initialRouteName="Home"
         drawerContent={(props) => <CustomDrawer {...props} />}>
         <Drawer.Screen
