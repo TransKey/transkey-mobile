@@ -113,9 +113,14 @@ export function HomeScreen() {
   }
 
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isParadaModalVisible, setParadaModalVisible] = useState(false);
 
   function handleModal() {
     setModalVisible(!isModalVisible);
+  }
+
+  function handleParadaModal() {
+    setParadaModalVisible(!isParadaModalVisible);
   }
 
   return (
@@ -153,6 +158,60 @@ export function HomeScreen() {
             <Icon name="ambulance" type="FontAwesome5" />
           </Button>
         </Modal>
+
+        <Modal
+          visible={isParadaModalVisible}
+          onDismiss={handleParadaModal}
+          contentContainerStyle={{
+            backgroundColor: '#FFFFFF',
+            padding: 10,
+            width: '90%',
+            marginHorizontal: '5%',
+            height: '60%',
+          }}>
+          <Text style={{ textAlign: 'center', fontSize: 25 }}>
+            Bom trabalho, viajamos por duas horas seguidas, Hora de dar uma
+            pausa e fazer alguns exercicios !
+          </Text>
+
+          {/* <Text style={{ textAlign: 'center', fontSize: 20, marginTop: 14 }}>
+            Para qual autoridade deseja disparar o chamado?
+          </Text> */}
+
+          {/* <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 30,
+            }}>
+            <View>
+              <Button style={{ backgroundColor: '#32a852' }}>
+                <Text>Vamos Lá!</Text>
+
+                <Icon name="check" type="AntDesign" />
+              </Button>
+            </View>
+
+            <View>
+              <Button style={{ backgroundColor: '#a12f3a' }}>
+                <Text>Mais tarde</Text>
+                <Icon name="close" type="AntDesign" />
+              </Button>
+            </View>
+          </View> */}
+
+          <Button style={{ backgroundColor: '#32a852', marginTop: 30 }}>
+            <Text>Vamos Lá!</Text>
+
+            <Icon name="check" type="AntDesign" />
+          </Button>
+
+          <Button style={{ backgroundColor: '#a12f3a', marginTop: 10 }}>
+            <Text>Mais tarde</Text>
+            <Icon name="close" type="AntDesign" />
+          </Button>
+        </Modal>
       </Portal>
 
       <BaseContainer>
@@ -163,7 +222,9 @@ export function HomeScreen() {
             </Button>
           </Left>
           <Body>
-            <Text style={styles.title}>Inicio</Text>
+            <Text style={styles.title} onPress={handleParadaModal}>
+              Inicio
+            </Text>
           </Body>
           <Right>
             <Button transparent onPress={handleModal}>
