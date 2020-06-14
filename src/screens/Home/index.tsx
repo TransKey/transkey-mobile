@@ -18,6 +18,8 @@ import haversine from 'haversine';
 
 import Geolocation from '@react-native-community/geolocation';
 
+import { Portal, Modal } from 'react-native-paper';
+
 import styles from './styles';
 
 export function HomeScreen() {
@@ -110,49 +112,97 @@ export function HomeScreen() {
     setRouteCoordinates([]);
   }
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  function handleModal() {
+    setModalVisible(!isModalVisible);
+  }
+
   return (
-    <BaseContainer>
-      <Header style={styles.header}>
-        <Left>
-          <Button transparent onPress={handlerDrawer}>
-            <Icon name="reorder" type="MaterialIcons" style={styles.icon} />
+    <>
+      <Portal>
+        <Modal
+          visible={isModalVisible}
+          onDismiss={handleModal}
+          contentContainerStyle={{
+            backgroundColor: '#FFFFFF',
+            padding: 10,
+            width: '90%',
+            marginHorizontal: '5%',
+            height: '60%',
+          }}>
+          <Text style={{ textAlign: 'center', fontSize: 30 }}>
+            Você acionou o Alerta!
+          </Text>
+
+          <Text style={{ textAlign: 'center', fontSize: 20, marginTop: 14 }}>
+            Para qual autoridade deseja disparar o chamado?
+          </Text>
+
+          <Button style={{ marginTop: 30 }} onPress={handleModal}>
+            <Text>Policia (190)</Text>
+
+            <Icon name="taxi" type="FontAwesome5" />
           </Button>
-        </Left>
-        <Body>
-          <Text style={styles.title}>Inicio</Text>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="traffic-cone" type="Entypo" style={styles.alertIcon} />
+
+          <Button
+            style={{ marginTop: 10, backgroundColor: '#b02836' }}
+            onPress={handleModal}>
+            <Text>SAMU (192)</Text>
+
+            <Icon name="ambulance" type="FontAwesome5" />
           </Button>
-        </Right>
-      </Header>
-      <Content scrollEnabled={false}>
-        <View style={styles.viewMap}>
-          <MapView
-            style={styles.map}
-            followsUserLocation
-            loadingEnabled
-            // showsUserLocation
-            region={getMapRegion()}>
-            {start && (
-              <Polyline coordinates={routeCoordinates} strokeWidth={5} />
-            )}
-            <MarkerAnimated coordinate={coordinate} />
-          </MapView>
-          <View style={styles.viewButton}>
-            {start ? (
-              <ButtonPrimary name="Inciar" icon="power" onPress={handleStart} />
-            ) : (
-              <ButtonSecondary
-                name="Cancelar"
-                icon="power"
-                onPress={handleStart}
-              />
-            )}
+        </Modal>
+      </Portal>
+
+      <BaseContainer>
+        <Header style={styles.header}>
+          <Left>
+            <Button transparent onPress={handlerDrawer}>
+              <Icon name="reorder" type="MaterialIcons" style={styles.icon} />
+            </Button>
+          </Left>
+          <Body>
+            <Text style={styles.title}>Inicio</Text>
+          </Body>
+          <Right>
+            <Button transparent onPress={handleModal}>
+              <Icon name="warning" type="Entypo" style={styles.alertIcon} />
+            </Button>
+          </Right>
+        </Header>
+
+        <Content scrollEnabled={false}>
+          <View style={styles.viewMap}>
+            <MapView
+              style={styles.map}
+              followsUserLocation
+              loadingEnabled
+              // showsUserLocation
+              region={getMapRegion()}>
+              {start && (
+                <Polyline coordinates={routeCoordinates} strokeWidth={5} />
+              )}
+              <MarkerAnimated coordinate={coordinate} />
+            </MapView>
+            <View style={styles.viewButton}>
+              {!start ? (
+                <ButtonPrimary
+                  name="Inciar"
+                  icon="power"
+                  onPress={handleStart}
+                />
+              ) : (
+                <ButtonSecondary
+                  name="Cancelar"
+                  icon="power"
+                  onPress={handleStart}
+                />
+              )}
+            </View>
           </View>
-        </View>
-      </Content>
-    </BaseContainer>
+        </Content>
+      </BaseContainer>
+    </>
   );
 }

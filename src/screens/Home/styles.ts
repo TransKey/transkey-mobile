@@ -16,7 +16,7 @@ export default StyleSheet.create({
     fontSize: 22,
   },
   alertIcon: {
-    color: '#7a0202',
+    color: '#b02836',
   },
   viewMap: {
     height: hp('100%'),

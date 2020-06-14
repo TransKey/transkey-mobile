@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Root } from 'native-base';
 
 import { PermissionsAndroid, Platform } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
 import Geolocation from '@react-native-community/geolocation';
 
 import { AppNavigation } from './src/navigation';
@@ -27,6 +28,7 @@ const App = () => {
         console.warn(err);
       }
     }
+
     if (Platform.OS === 'ios') {
       Geolocation.requestAuthorization();
     } else {
@@ -36,7 +38,9 @@ const App = () => {
 
   return (
     <Root>
-      <AppNavigation />
+      <PaperProvider>
+        <AppNavigation />
+      </PaperProvider>
     </Root>
   );
 };
