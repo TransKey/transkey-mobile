@@ -5,7 +5,7 @@ import styles from './styles';
 
 interface ButtonTertiaryProps {
   name: string;
-  icon: any;
+  icon?: any;
   type?: any;
   onPress?: any;
 }
@@ -19,7 +19,7 @@ export function ButtonTertiary({
   return (
     <Button style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{name}</Text>
-      <Icon name={icon} type={type} />
+      {icon && <Icon name={icon} type={type} />}
     </Button>
   );
 }

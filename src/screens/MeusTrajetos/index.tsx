@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Header,
-  Left,
-  Body,
-  Right,
-  Content,
-  View,
-  Text,
-  Card,
-  CardItem,
-} from 'native-base';
+import { Header, Left, Body, Right, Content, View, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 import { BaseContainer, ButtonBack, MeusTrajetosCard } from '../../components';

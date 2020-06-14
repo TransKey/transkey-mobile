@@ -11,6 +11,13 @@ export function CustomDrawer(props: any) {
     props.navigation.navigate(name);
   }
 
+  function checkRoute(route: any) {
+    if (route.name === 'Cadastro Dados' || route.name === 'Cadastro Foto') {
+      return false;
+    }
+    return true;
+  }
+
   return (
     <DrawerContentScrollView
       {...props}
@@ -29,22 +36,25 @@ export function CustomDrawer(props: any) {
         </View>
       </View>
       <View style={styles.viewItems}>
-        {routes.map((route: any) => (
-          <DrawerItem
-            key={route.key}
-            label={route.name}
-            labelStyle={styles.drawerItem}
-            onPress={() => handleClickItem(route.name)}
-            icon={({ color, focused }) => (
-              <Icon
-                name={route.params.icon.name}
-                type={route.params.icon.type}
-                color={color}
-                active={focused}
+        {routes.map(
+          (route: any) =>
+            checkRoute(route) && (
+              <DrawerItem
+                key={route.key}
+                label={route.name}
+                labelStyle={styles.drawerItem}
+                onPress={() => handleClickItem(route.name)}
+                icon={({ color, focused }) => (
+                  <Icon
+                    name={route.params.icon.name}
+                    type={route.params.icon.type}
+                    color={color}
+                    active={focused}
+                  />
+                )}
               />
-            )}
-          />
-        ))}
+            ),
+        )}
       </View>
     </DrawerContentScrollView>
   );

@@ -15,8 +15,11 @@ export default StyleSheet.create({
   content: {
     backgroundColor: '#4098e2',
   },
-  viewContent: {
+  View: {
+    marginTop: hp('10%'),
     alignItems: 'center',
-    marginTop: hp('3%'),
+  },
+  viewBottom: {
+    marginTop: hp('2%'),
   },
 });

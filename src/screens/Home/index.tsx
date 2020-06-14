@@ -121,7 +121,11 @@ export function HomeScreen() {
         <Body>
           <Text style={styles.title}>Inicio</Text>
         </Body>
-        <Right />
+        <Right>
+          <Button transparent>
+            <Icon name="traffic-cone" type="Entypo" style={styles.alertIcon} />
+          </Button>
+        </Right>
       </Header>
       <Content scrollEnabled={false}>
         <View style={styles.viewMap}>

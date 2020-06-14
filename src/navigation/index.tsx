@@ -7,8 +7,11 @@ import { CustomDrawer } from '../components';
 import {
   HomeScreen,
   MeuPerfilScreen,
-  ConfiguracoesScreen,
   MeusTrajetosScreen,
+  ConfiguracoesScreen,
+  CadastrarFotoScreen,
+  CadastrarDadosScreen,
+  CalculadoraScreen,
 } from '../screens';
 
 export function AppNavigation() {
@@ -16,16 +19,23 @@ export function AppNavigation() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Home"
+        initialRouteName="Cadastro Dados"
         drawerContent={(props) => <CustomDrawer {...props} />}>
+        <Drawer.Screen name="Cadastro Dados" component={CadastrarDadosScreen} />
+        <Drawer.Screen name="Cadastro Foto" component={CadastrarFotoScreen} />
         <Drawer.Screen
-          component={HomeScreen}
           name="Home"
+          component={HomeScreen}
           initialParams={{ icon: { name: 'home', type: 'Entypo' } }}
         />
         <Drawer.Screen
-          component={MeuPerfilScreen}
+          name="IMC"
+          component={CalculadoraScreen}
+          initialParams={{ icon: { name: 'calculator', type: 'Entypo' } }}
+        />
+        <Drawer.Screen
           name="Meu Perfil"
+          component={MeuPerfilScreen}
           initialParams={{ icon: { name: 'person', type: 'Ionicons' } }}
         />
         <Drawer.Screen

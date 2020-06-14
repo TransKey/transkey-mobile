@@ -15,6 +15,9 @@ export default StyleSheet.create({
     color: '#ffffff',
     fontSize: 22,
   },
+  alertIcon: {
+    color: '#7a0202',
+  },
   viewMap: {
     height: hp('100%'),
     width: wp('100%'),
